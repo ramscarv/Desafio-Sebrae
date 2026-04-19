@@ -246,12 +246,11 @@ Redirecionamento automático de /api para http://localhost:8080/api
 
 ### Exemplos de Requisições
 
-Criar Categoria
+```Criar Categoria
 
 **Endpoint:** `POST /api/categorias`
 
 **Body da Requisição:**
-```json
 {
   "nome": "Eletrônicos"
 }
@@ -261,7 +260,6 @@ Criar Produtos
 **Endpoint:** `POST /api/produtos`
 
 **Body da Requisição:**
-```json
 {
   "nome": "Smartphone",
   "descricao": "Smartphone de última geração",
@@ -275,7 +273,6 @@ Criar Pedido
 **Endpoint:** `POST /api/pedidos`
 
 **Body da Requisição:**
-```json
 {
   "itens": [
     {
@@ -284,6 +281,7 @@ Criar Pedido
     }
   ]
 }
+```
 
 ## 🔍 Observações sobre Simplificações
 Banco de Dados  
