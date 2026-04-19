@@ -244,37 +244,46 @@ Redirecionamento automático de /api para http://localhost:8080/api
 | GET | `/api/pedidos` | Listar pedidos | 200 OK |
 | GET | `/api/pedidos/{id}` | Detalhar pedido | 200 OK |
 
-#### Exemplos de Requisições
+### Exemplos de Requisições
 
-Criar Categoria  
- 
-POST /api/categorias  
-{  
-  "nome": "Eletrônicos"  
-}  
+Criar Categoria
 
-Criar Produto  
- 
-POST /api/produtos  
-{  
-  "nome": "Smartphone",  
-  "descricao": "Smartphone de última geração",  
-  "preco": 1999.99,  
-  "quantidadeEmEstoque": 100,  
-  "categoriaId": 1  
-}  
+**Endpoint:** `POST /api/categorias`
 
-Criar Pedido  
+**Body da Requisição:**
+```json
+{
+  "nome": "Eletrônicos"
+}
 
-POST /api/pedidos  
-{  
-  "itens": [  
-    {  
-      "produtoId": 1,  
-      "quantidade": 2  
-    }  
-  ]  
-}  
+Criar Produtos
+
+**Endpoint:** `POST /api/produtos`
+
+**Body da Requisição:**
+```json
+{
+  "nome": "Smartphone",
+  "descricao": "Smartphone de última geração",
+  "preco": 1999.99,
+  "quantidadeEmEstoque": 100,
+  "categoriaId": 1
+}
+
+Criar Pedido
+
+**Endpoint:** `POST /api/pedidos`
+
+**Body da Requisição:**
+```json
+{
+  "itens": [
+    {
+      "produtoId": 1,
+      "quantidade": 2
+    }
+  ]
+}
 
 ## 🔍 Observações sobre Simplificações
 Banco de Dados  
