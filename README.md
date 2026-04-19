@@ -410,12 +410,11 @@ mini-sistema-pedidos/
 │           ├── repository/
 │           ├── service/
 │           ├── dto/
-│           ├── exception/
-│           └── config/
+│           └── exception/
+│           
 │
 ├── frontend/                          # Pasta do frontend
 │   ├── Dockerfile                     # Dockerfile do frontend
-│   ├── Dockerfile.dev                 # Dockerfile para desenvolvimento
 │   ├── nginx.conf                     # Configuração do Nginx
 │   ├── .dockerignore                  # Ignorar arquivos desnecessários
 │   │
@@ -426,8 +425,7 @@ mini-sistema-pedidos/
 │       ├── components/
 │       └── services/
 │
-├── docker-compose.yml                 # Orquestração dos containers
-└── start.bat                          # Script de inicialização
+└── docker-compose.yml                 # Orquestração dos container
 ```
 
 ## 📊 Diagrama do Banco de Dados
