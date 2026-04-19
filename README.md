@@ -283,29 +283,23 @@ POST /api/pedidos
 ## 🔍 Observações sobre Simplificações
 Banco de Dados
 ✅ Utilizei H2 em memória para facilitar o teste
-
 ⚠️ Dados são perdidos ao reiniciar a aplicação
-
 📝 Para produção, seria necessário configurar um banco persistente (PostgreSQL, MySQL)
 
 Autenticação
 ❌ Sistema não possui autenticação/autorização
-
 📝 Em produção, seria necessário implementar Spring Security com JWT
 
 Frontend
 ❌ Sem gerenciamento de estado global (Redux/Context API)
-
 📝 Para escala maior, seria necessário implementar
 
 Validações
 ✅ Validações básicas implementadas
-
 📝 Validações mais complexas (CPF, email, etc) não são necessárias para o escopo
 
 Logs
 ✅ Logs básicos do Spring Boot
-
 📝 Para produção, seria necessário implementar logging estruturado
 
 ## 🚀 Melhorias que seriam realizadas com mais tempo
