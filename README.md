@@ -246,7 +246,8 @@ Redirecionamento automático de /api para http://localhost:8080/api
 
 ### Exemplos de Requisições
 
-```Criar Categoria
+```
+Criar Categoria
 
 **Endpoint:** `POST /api/categorias`
 
