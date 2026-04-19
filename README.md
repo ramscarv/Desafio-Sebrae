@@ -13,7 +13,6 @@ Sistema completo de gerenciamento de pedidos, produtos e categorias com backend 
 - [Endpoints da API](#-endpoints-da-api)
 - [Observações e Simplificações](#-observações-sobre-simplificações)
 - [Melhorias Futuras](#-melhorias-que-seriam-realizadas-com-mais-tempo)
-- [Solução de Problemas](#-solução-de-problemas-comuns)
 - [Estrutura do Projeto](#-estrutura-do-projeto)
 
 ---
@@ -64,10 +63,10 @@ Navegue até a pasta do backend: cd backend
 Execute o Maven: "mvnw spring-boot:run"  
 
 ✅ Aguarde a mensagem de sucesso:
-Tomcat started on port(s): 8080 (http) with context path ''  
+Tomcat started on port(s):  
+8080 (http) with context path ''  
 Started PedidosApplication in X seconds  
-Backend estará disponível em:
-API: http://localhost:8080/api
+Backend estará disponível em: http://localhost:8080/api
 
 Console H2: http://localhost:8080/h2-console  
 JDBC URL: jdbc:h2:mem:pedidosdb  
@@ -81,7 +80,7 @@ Inicie o servidor: npm run dev
 ✅ Frontend estará disponível em: http://localhost:3000
 
 ### 4. Acessar a Aplicação
-Abra o navegador e acesse: http://localhost:3000
+Abra o navegador e acesse: http://localhost:3000  
 A aplicação está pronta para uso! 🎉
 
 ## 📖 Como Usar
@@ -112,16 +111,15 @@ Clique em "Ver Detalhes" para mais informações
 ### Backend
 
 Unicidade de Nomes  
-Categorias: ✅ Implementei unicidade de nome para evitar duplicação e garantir consistência na categorização.
-
+Categorias: ✅ Implementei unicidade de nome para evitar duplicação e garantir consistência na categorização
 Produtos: ❌ Não implementei unicidade para permitir produtos similares de diferentes fornecedores.  
+
 Busca de Produtos  
 Busca parcial e case-insensitive  
 Retorna todos os produtos cujo nome contenha o termo pesquisado  
 
 Exclusão de Produtos  
 Produtos já utilizados em pedidos não podem ser excluídos para manter integridade histórica  
-
 Retorna status HTTP 409 (Conflict) com mensagem clara  
 Produtos sem vínculo com pedidos podem ser excluídos normalmente  
 
@@ -157,30 +155,36 @@ Redirecionamento automático de /api para http://localhost:8080/api
 
 ## 📐 Principais Regras Implementadas
 
-Produtos  
-Regra	Status	Descrição  
-Nome obrigatório	✅	Não permite cadastro sem nome  
-Preço ≥ zero	✅	Valida preços negativos  
-Estoque ≥ zero	✅	Não permite estoque negativo  
-Categoria obrigatória	✅	Produto deve pertencer a uma categoria  
-Busca por nome	✅	Busca parcial case-insensitive  
-Edição completa	✅	Permite alterar todos os campos  
-Exclusão com validação	✅	Impede exclusão de produtos com pedidos  
+#### Produtos
 
-Pedidos  
-Regra	Status	Descrição  
-Não permite sem itens	✅	Valida lista de itens vazia  
-Quantidade > zero	✅	Cada item deve ter quantidade positiva  
-Estoque suficiente	✅	Verifica antes de criar pedido  
-Baixa automática	✅	Atualiza estoque após pedido  
-Cálculo do total	✅	Calcula automaticamente no backend  
-Preço histórico	✅	Preserva preço do momento da compra  
+| Regra | Status | Descrição |
+|-------|--------|-----------|
+| Nome obrigatório | ✅ | Não permite cadastro sem nome |
+| Preço ≥ zero | ✅ | Valida preços negativos |
+| Estoque ≥ zero | ✅ | Não permite estoque negativo |
+| Categoria obrigatória | ✅ | Produto deve pertencer a uma categoria |
+| Busca por nome | ✅ | Busca parcial case-insensitive |
+| Edição completa | ✅ | Permite alterar todos os campos |
+| Exclusão com validação | ✅ | Impede exclusão de produtos com pedidos |
 
-Categorias  
-Regra	Status	Descrição  
-Nome obrigatório	✅	Campo obrigatório  
-Unicidade de nome	✅	Nomes duplicados não são permitidos  
-Listagem completa	✅	Retorna todas as categorias  
+#### Pedidos
+
+| Regra | Status | Descrição |
+|-------|--------|-----------|
+| Não permite sem itens | ✅ | Valida lista de itens vazia |
+| Quantidade > zero | ✅ | Cada item deve ter quantidade positiva |
+| Estoque suficiente | ✅ | Verifica antes de criar pedido |
+| Baixa automática | ✅ | Atualiza estoque após pedido |
+| Cálculo do total | ✅ | Calcula automaticamente no backend |
+| Preço histórico | ✅ | Preserva preço do momento da compra |
+
+#### Categorias
+
+| Regra | Status | Descrição |
+|-------|--------|-----------|
+| Nome obrigatório | ✅ | Campo obrigatório |
+| Unicidade de nome | ✅ | Nomes duplicados não são permitidos |
+| Listagem completa | ✅ | Retorna todas as categorias |
 
 ## 📝 Endpoints da API
 
@@ -245,32 +249,32 @@ Listagem completa	✅	Retorna todas as categorias
 Criar Categoria  
 json  
 POST /api/categorias  
-{
-  "nome": "Eletrônicos"
-}
+{  
+  "nome": "Eletrônicos"  
+}  
 
 Criar Produto  
 json  
 POST /api/produtos  
-{
-  "nome": "Smartphone",
-  "descricao": "Smartphone de última geração",
-  "preco": 1999.99,
-  "quantidadeEmEstoque": 100,
-  "categoriaId": 1
-}
+{  
+  "nome": "Smartphone",  
+  "descricao": "Smartphone de última geração",  
+  "preco": 1999.99,  
+  "quantidadeEmEstoque": 100,  
+  "categoriaId": 1  
+}  
 
 Criar Pedido  
 json  
 POST /api/pedidos  
-{
-  "itens": [
-    {
-      "produtoId": 1,
-      "quantidade": 2
-    }
-  ]
-}
+{  
+  "itens": [  
+    {  
+      "produtoId": 1,  
+      "quantidade": 2  
+    }  
+  ]  
+}  
 
 ## 🔍 Observações sobre Simplificações
 Banco de Dados  
@@ -449,7 +453,8 @@ mini-sistema-pedidos/
 
 CATEGORIAS (  
     id BIGINT PRIMARY KEY AUTO_INCREMENT,  
-    nome VARCHAR(255) NOT NULL UNIQUE)  
+    nome VARCHAR(255) NOT NULL UNIQUE
+    )  
 
 PRODUTOS (  
     id BIGINT PRIMARY KEY AUTO_INCREMENT,  
@@ -458,12 +463,14 @@ PRODUTOS (
     preco DECIMAL(10,2) NOT NULL,  
     quantidade_em_estoque INT NOT NULL,  
     categoria_id BIGINT NOT NULL,  
-    FOREIGN KEY (categoria_id) REFERENCES CATEGORIAS(id))  
+    FOREIGN KEY (categoria_id) REFERENCES CATEGORIAS(id)
+    )  
 
 PEDIDOS (  
     id BIGINT PRIMARY KEY AUTO_INCREMENT,  
     data_hora TIMESTAMP NOT NULL,  
-    valor_total DECIMAL(10,2) NOT NULL)  
+    valor_total DECIMAL(10,2) NOT NULL
+    )  
 
 PEDIDOS_ITENS (  
     id BIGINT PRIMARY KEY AUTO_INCREMENT,  
@@ -473,7 +480,8 @@ PEDIDOS_ITENS (
     preco_unitario DECIMAL(10,2) NOT NULL,  
     subtotal DECIMAL(10,2) NOT NULL,  
     FOREIGN KEY (pedido_id) REFERENCES PEDIDOS(id),  
-    FOREIGN KEY (produto_id) REFERENCES PRODUTOS(id))  
+    FOREIGN KEY (produto_id) REFERENCES PRODUTOS(id)
+    )  
 
 ## 📄 Licença
 Este projeto foi desenvolvido para fins de avaliação técnica.
