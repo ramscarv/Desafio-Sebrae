@@ -247,34 +247,34 @@ Redirecionamento automático de /api para http://localhost:8080/api
 #### Exemplos de Requisições
 
 Criar Categoria  
-json  
+ 
 POST /api/categorias  
-{  
-  "nome": "Eletrônicos"  
-}  
+    {  
+    "nome": "Eletrônicos"  
+    }  
 
 Criar Produto  
-json  
+ 
 POST /api/produtos  
-{  
-  "nome": "Smartphone",  
-  "descricao": "Smartphone de última geração",  
-  "preco": 1999.99,  
-  "quantidadeEmEstoque": 100,  
-  "categoriaId": 1  
-}  
+    {  
+    "nome": "Smartphone",  
+    "descricao": "Smartphone de última geração",  
+    "preco": 1999.99,  
+    "quantidadeEmEstoque": 100,  
+    "categoriaId": 1  
+    }  
 
 Criar Pedido  
-json  
+
 POST /api/pedidos  
-{  
-  "itens": [  
     {  
-      "produtoId": 1,  
-      "quantidade": 2  
+    "itens": [  
+        {  
+        "produtoId": 1,  
+        "quantidade": 2  
+        }  
+    ]  
     }  
-  ]  
-}  
 
 ## 🔍 Observações sobre Simplificações
 Banco de Dados  
