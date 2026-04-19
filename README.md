@@ -386,7 +386,7 @@ Docker e Docker Compose
 CI/CD com GitHub Actions  
 Deploy automatizado (Heroku/Vercel)  
 
-## 📁 Estrutura do Projet
+## 📁 Estrutura do Projeto
 mini-sistema-pedidos/  
 │  
 ├── README.md                          # Documentação principal  
