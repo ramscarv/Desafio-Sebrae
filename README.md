@@ -14,6 +14,7 @@ Sistema completo de gerenciamento de pedidos, produtos e categorias com backend 
 - [Observações e Simplificações](#-observações-sobre-simplificações)
 - [Melhorias Futuras](#-melhorias-que-seriam-realizadas-com-mais-tempo)
 - [Estrutura do Projeto](#-estrutura-do-projeto)
+- [Diagrama do Banco de Dados](#-diagrama-do-banco-de-dados)
 
 ---
 
@@ -458,7 +459,7 @@ mini-sistema-pedidos/
             └── api.js                 # Cliente Axios
 ```
 
-### 📊 Diagrama do Banco de Dados
+## 📊 Diagrama do Banco de Dados
 -- Estrutura das tabelas  
 
 CATEGORIAS (  
@@ -492,9 +493,3 @@ PEDIDOS_ITENS (
     FOREIGN KEY (pedido_id) REFERENCES PEDIDOS(id),  
     FOREIGN KEY (produto_id) REFERENCES PRODUTOS(id)
     )  
-
-## 📄 Licença
-Este projeto foi desenvolvido para fins de avaliação técnica.
-
-## 👨‍💻 Autor
-Desenvolvido como parte de desafio técnico para avaliação de habilidades full stack.
