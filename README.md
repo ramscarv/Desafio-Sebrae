@@ -445,9 +445,9 @@ mini-sistema-pedidos/
         ├── App.css                    # Estilos globais  
         │  
         ├── components/                # Componentes React  
-        │   ├── Mensagem.jsx           # Mensagens de feedback  
+        │   ├── Mensagem.jsx           # Mensagens de feedback   
         │   ├── CategoriaLista.jsx     # Lista de categorias  
-        │   ├── ProdutoForm.jsx        # Formulário de produtos  
+        │   ├── ProdutoForm.jsx        # Formulário de produtos   
         │   ├── ProdutoLista.jsx       # Lista de produtos  
         │   ├── PedidoForm.jsx         # Formulário de pedidos  
         │   ├── PedidoLista.jsx        # Lista de pedidos  
