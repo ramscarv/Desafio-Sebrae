@@ -192,23 +192,61 @@ Listagem completa	✅	Retorna todas as categorias
 
 ## 📝 Endpoints da API
 
-Método	Endpoint	Descrição	Status HTTP
+### Produtos
 
-Categorias			
-POST	/api/categorias	Criar categoria	201 Created
-GET	/api/categorias	Listar categorias	200 OK
+| Regra | Status | Descrição |
+|-------|--------|-----------|
+| Nome obrigatório | ✅ | Não permite cadastro sem nome |
+| Preço ≥ zero | ✅ | Valida preços negativos |
+| Estoque ≥ zero | ✅ | Não permite estoque negativo |
+| Categoria obrigatória | ✅ | Produto deve pertencer a uma categoria |
+| Busca por nome | ✅ | Busca parcial case-insensitive |
+| Edição completa | ✅ | Permite alterar todos os campos |
+| Exclusão com validação | ✅ | Impede exclusão de produtos com pedidos |
 
-Produtos			
-POST	/api/produtos	Criar produto	201 Created
-PUT	/api/produtos/{id}	Editar produto	200 OK
-GET	/api/produtos	Listar produtos	200 OK
-GET	/api/produtos/buscar?nome={nome}	Buscar produto	200 OK
-DELETE	/api/produtos/{id}	Excluir produto	204 No Content
+### Pedidos
 
-Pedidos			
-POST	/api/pedidos	Criar pedido	201 Created
-GET	/api/pedidos	Listar pedidos	200 OK
-GET	/api/pedidos/{id}	Detalhar pedido	200 OK
+| Regra | Status | Descrição |
+|-------|--------|-----------|
+| Não permite sem itens | ✅ | Valida lista de itens vazia |
+| Quantidade > zero | ✅ | Cada item deve ter quantidade positiva |
+| Estoque suficiente | ✅ | Verifica antes de criar pedido |
+| Baixa automática | ✅ | Atualiza estoque após pedido |
+| Cálculo do total | ✅ | Calcula automaticamente no backend |
+| Preço histórico | ✅ | Preserva preço do momento da compra |
+
+### Categorias
+
+| Regra | Status | Descrição |
+|-------|--------|-----------|
+| Nome obrigatório | ✅ | Campo obrigatório |
+| Unicidade de nome | ✅ | Nomes duplicados não são permitidos |
+| Listagem completa | ✅ | Retorna todas as categorias |
+
+## 📝 Endpoints da API - Categorias
+
+| Método | Endpoint | Descrição | Status HTTP |
+|--------|----------|-----------|-------------|
+| POST | `/api/categorias` | Criar categoria | 201 Created |
+| GET | `/api/categorias` | Listar categorias | 200 OK |
+
+### Endpoints da API - Produtos
+
+| Método | Endpoint | Descrição | Status HTTP |
+|--------|----------|-----------|-------------|
+| POST | `/api/produtos` | Criar produto | 201 Created |
+| PUT | `/api/produtos/{id}` | Editar produto | 200 OK |
+| GET | `/api/produtos` | Listar produtos | 200 OK |
+| GET | `/api/produtos/buscar?nome={nome}` | Buscar produto | 200 OK |
+| DELETE | `/api/produtos/{id}` | Excluir produto | 204 No Content |
+
+### Endpoints da API - Pedidos
+
+| Método | Endpoint | Descrição | Status HTTP |
+|--------|----------|-----------|-------------|
+| POST | `/api/pedidos` | Criar pedido | 201 Created |
+| GET | `/api/pedidos` | Listar pedidos | 200 OK |
+| GET | `/api/pedidos/{id}` | Detalhar pedido | 200 OK |
 
 #### Exemplos de Requisições
 
