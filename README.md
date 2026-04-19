@@ -42,18 +42,15 @@ Sistema completo de gerenciamento de pedidos, produtos e categorias com backend 
 ## 📋 Pré-requisitos
 
 Antes de começar, certifique-se de ter instalado:
-# Verifique as versões necessárias
-java --version         # Java 26 ou superior
-mvn --version          # Maven 3.9+
-node --version         # Node.js 18+
-npm --version          # npm 9+  
+# Verifique as versões necessárias  
+java --version         # Java 26 ou superior  
+mvn --version          # Maven 3.9+  
+node --version         # Node.js 18+  
+npm --version          # npm 9+   
 
-Instalação dos Pré-requisitos  
-
-Java: https://www.oracle.com/java/technologies/downloads/
-
-Maven: https://maven.apache.org/download.cgi
-
+Instalação dos Pré-requisitos
+Java: https://www.oracle.com/java/technologies/downloads/  
+Maven: https://maven.apache.org/download.cg  
 Node.js: https://nodejs.org/
 
 ## 📋 Instalação e Execução
@@ -63,13 +60,12 @@ git clone <url-do-repositorio>
 cd mini-sistema-pedidos
 
 ### 2. Executar o Backend (Spring Boot)
-Navegue até a pasta do backend:
-cd backend
-Execute o Maven:
-mvnw spring-boot:run
+Navegue até a pasta do backend:cd backend  
+Execute o Maven:  mvnw spring-boot:run  
+
 ✅ Aguarde a mensagem de sucesso:
 Tomcat started on port(s): 8080 (http) with context path ''
-Started PedidosApplication in X seconds
+Started PedidosApplication in X seconds  
 Backend estará disponível em:
 API: http://localhost:8080/api
 
