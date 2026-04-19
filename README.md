@@ -43,12 +43,12 @@ Sistema completo de gerenciamento de pedidos, produtos e categorias com backend 
 
 Antes de começar, certifique-se de ter instalado:
 # Verifique as versões necessárias
-java --version          # Java 26 ou superior
+java --version         # Java 26 ou superior
 mvn --version          # Maven 3.9+
 node --version         # Node.js 18+
-npm --version          # npm 9+
-Instalação dos Pré-requisitos
-Windows:
+npm --version          # npm 9+  
+
+Instalação dos Pré-requisitos  
 
 Java: https://www.oracle.com/java/technologies/downloads/
 
