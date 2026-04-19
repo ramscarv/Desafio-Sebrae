@@ -1,0 +1,535 @@
+<!--<!DOCTYPE html>
+<html>
+<head>
+    <title>Mini Sistema de Pedidos</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 20px; 
+            background-color: #f5f5f5;
+        }
+        .container { 
+            max-width: 1200px; 
+            margin: auto; 
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 { color: #333; text-align: center; }
+        h2 { color: #555; border-bottom: 2px solid #ddd; padding-bottom: 5px; margin-top: 20px; }
+        
+        .section {
+            background: #f9f9f9;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        input, select, textarea {
+            margin: 5px;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 200px;
+        }
+        
+        button {
+            margin: 5px;
+            padding: 8px 15px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #45a049;
+        }
+        
+        button.delete-btn {
+            background-color: #f44336;
+        }
+        
+        button.delete-btn:hover {
+            background-color: #da190b;
+        }
+        
+        button.edit-btn {
+            background-color: #2196F3;
+        }
+        
+        button.edit-btn:hover {
+            background-color: #0b7dda;
+        }
+        
+        pre { 
+            background: #fff; 
+            padding: 10px; 
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            overflow-x: auto;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .form-group {
+            margin-bottom: 10px;
+        }
+        
+        .item-pedido {
+            background: white;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .card {
+            background: white;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        
+        .search-box {
+            margin-bottom: 20px;
+        }
+        
+        .search-box input {
+            width: 300px;
+        }
+        
+        .produto-item {
+            background: white;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .produto-info {
+            flex-grow: 1;
+        }
+        
+        .produto-actions button {
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📦 Mini Sistema de Pedidos</h1>
+        
+
+        <div class="section">
+            <h2>📁 Categorias</h2>
+            <input type="text" id="categoriaNome" placeholder="Nome da categoria">
+            <button onclick="criarCategoria()">Criar Categoria</button>
+            <button onclick="listarCategorias()">Listar Categorias</button>
+            <pre id="categorias"></pre>
+        </div>
+
+        
+        ##Produtos##
+        <div class="section">
+            <h2>🛍️ Produtos</h2>
+            
+            <div class="search-box">
+                <input type="text" id="buscaProdutoNome" placeholder="Buscar produto por nome...">
+                <button onclick="buscarProdutoPorNome()">Buscar</button>
+                <button onclick="listarProdutos()">Listar Todos</button>
+            </div>
+            
+            <h3>Cadastrar/Editar Produto</h3>
+            <input type="hidden" id="produtoId">
+            <input type="text" id="produtoNome" placeholder="Nome do produto" style="width: 150px">
+            <input type="text" id="produtoDesc" placeholder="Descrição" style="width: 200px">
+            <input type="number" id="produtoPreco" placeholder="Preço" step="0.01" style="width: 100px">
+            <input type="number" id="produtoEstoque" placeholder="Estoque" style="width: 100px">
+            <input type="number" id="categoriaId" placeholder="ID da Categoria" style="width: 120px">
+            <button onclick="salvarProduto()" id="btnSalvarProduto">Cadastrar Produto</button>
+            <button onclick="limparFormProduto()" style="background-color: #999;">Cancelar</button>
+            
+            <h3>Lista de Produtos</h3>
+            <div id="listaProdutos"></div>
+        </div>
+
+        
+        ##Pedidos##
+        <div class="section">
+            <h2>🛒 Pedidos</h2>
+            
+            <h3>Criar Novo Pedido</h3>
+            <div id="itensPedido">
+                <div class="item-pedido" id="item-template" style="display:none;">
+                    <select class="produto-select" style="width: 200px;">
+                        <option value="">Selecione um produto</option>
+                    </select>
+                    <input type="number" class="quantidade-input" placeholder="Quantidade" min="1" style="width: 100px">
+                    <button class="remove-item" onclick="removerItem(this)">Remover</button>
+                </div>
+            </div>
+            <button onclick="adicionarItem()">+ Adicionar Item</button>
+            <button onclick="criarPedido()" style="background-color: #ff9800;">Criar Pedido</button>
+            
+            <h3>Listar Pedidos</h3>
+            <button onclick="listarPedidos()">Listar Pedidos</button>
+            <input type="number" id="detalharPedidoId" placeholder="ID do Pedido" style="width: 150px">
+            <button onclick="detalharPedido()">Detalhar Pedido</button>
+            <pre id="pedidos"></pre>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:8081/api';
+        let produtosCache = [];
+        let nextItemId = 0;
+
+        // ==================== FUNÇÕES DE CATEGORIAS ====================
+        
+        async function criarCategoria() {
+            const nome = document.getElementById('categoriaNome').value;
+            if (!nome) {
+                alert('Digite o nome da categoria');
+                return;
+            }
+            
+            try {
+                const response = await fetch(`${API_URL}/categorias`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ nome: nome })
+                });
+                const data = await response.json();
+                document.getElementById('categorias').textContent = JSON.stringify(data, null, 2);
+                document.getElementById('categoriaNome').value = '';
+                alert('Categoria criada com sucesso!');
+            } catch (error) {
+                document.getElementById('categorias').textContent = 'Erro: ' + error.message;
+            }
+        }
+        
+        async function listarCategorias() {
+            try {
+                const response = await fetch(`${API_URL}/categorias`);
+                const data = await response.json();
+                document.getElementById('categorias').textContent = JSON.stringify(data, null, 2);
+            } catch (error) {
+                document.getElementById('categorias').textContent = 'Erro: ' + error.message;
+            }
+        }
+
+        // ==================== FUNÇÕES DE PRODUTOS ====================
+        
+        async function listarProdutos() {
+            try {
+                const response = await fetch(`${API_URL}/produtos`);
+                const data = await response.json();
+                produtosCache = data;
+                exibirListaProdutos(data);
+            } catch (error) {
+                document.getElementById('listaProdutos').innerHTML = '<p>Erro ao carregar produtos: ' + error.message + '</p>';
+            }
+        }
+        
+        async function buscarProdutoPorNome() {
+            const nome = document.getElementById('buscaProdutoNome').value;
+            if (!nome) {
+                alert('Digite o nome do produto para buscar');
+                return;
+            }
+            
+            try {
+                const response = await fetch(`${API_URL}/produtos/buscar?nome=${encodeURIComponent(nome)}`);
+                const data = await response.json();
+                exibirListaProdutos(data);
+            } catch (error) {
+                document.getElementById('listaProdutos').innerHTML = '<p>Erro na busca: ' + error.message + '</p>';
+            }
+        }
+        
+        function exibirListaProdutos(produtos) {
+            if (!produtos || produtos.length === 0) {
+                document.getElementById('listaProdutos').innerHTML = '<p>Nenhum produto encontrado.</p>';
+                return;
+            }
+            
+            let html = '';
+            for (const produto of produtos) {
+                html += `
+                    <div class="produto-item">
+                        <div class="produto-info">
+                            <strong>ID: ${produto.id}</strong><br>
+                            <strong>${produto.nome}</strong><br>
+                            Descrição: ${produto.descricao || 'N/A'}<br>
+                            Preço: R$ ${produto.preco.toFixed(2)}<br>
+                            Estoque: ${produto.quantidadeEmEstoque}<br>
+                            Categoria: ${produto.categoriaNome || produto.categoriaId}
+                        </div>
+                        <div class="produto-actions">
+                            <button class="edit-btn" onclick="editarProduto(${produto.id})">✏️ Editar</button>
+                            <button class="delete-btn" onclick="excluirProduto(${produto.id})">🗑️ Excluir</button>
+                        </div>
+                    </div>
+                `;
+            }
+            document.getElementById('listaProdutos').innerHTML = html;
+        }
+        
+        async function salvarProduto() {
+            const id = document.getElementById('produtoId').value;
+            const produto = {
+                nome: document.getElementById('produtoNome').value,
+                descricao: document.getElementById('produtoDesc').value,
+                preco: parseFloat(document.getElementById('produtoPreco').value),
+                quantidadeEmEstoque: parseInt(document.getElementById('produtoEstoque').value),
+                categoriaId: parseInt(document.getElementById('categoriaId').value)
+            };
+            
+            if (!produto.nome || isNaN(produto.preco) || isNaN(produto.quantidadeEmEstoque) || isNaN(produto.categoriaId)) {
+                alert('Preencha todos os campos corretamente!');
+                return;
+            }
+            
+            try {
+                let response;
+                if (id) {
+                    // Editar produto
+                    response = await fetch(`${API_URL}/produtos/${id}`, {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(produto)
+                    });
+                } else {
+                    // Criar produto
+                    response = await fetch(`${API_URL}/produtos`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(produto)
+                    });
+                }
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    alert(id ? 'Produto atualizado com sucesso!' : 'Produto criado com sucesso!');
+                    limparFormProduto();
+                    listarProdutos();
+                    atualizarSelectProdutos();
+                } else {
+                    const error = await response.json();
+                    alert('Erro: ' + JSON.stringify(error));
+                }
+            } catch (error) {
+                alert('Erro ao salvar produto: ' + error.message);
+            }
+        }
+        
+        async function editarProduto(id) {
+            try {
+                const response = await fetch(`${API_URL}/produtos`);
+                const produtos = await response.json();
+                const produto = produtos.find(p => p.id === id);
+                
+                if (produto) {
+                    document.getElementById('produtoId').value = produto.id;
+                    document.getElementById('produtoNome').value = produto.nome;
+                    document.getElementById('produtoDesc').value = produto.descricao || '';
+                    document.getElementById('produtoPreco').value = produto.preco;
+                    document.getElementById('produtoEstoque').value = produto.quantidadeEmEstoque;
+                    document.getElementById('categoriaId').value = produto.categoriaId;
+                    document.getElementById('btnSalvarProduto').textContent = 'Atualizar Produto';
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            } catch (error) {
+                alert('Erro ao carregar produto para edição: ' + error.message);
+            }
+        }
+        
+        async function excluirProduto(id) {
+            if (!confirm('Tem certeza que deseja excluir este produto? (Produtos com pedidos não podem ser excluídos)')) {
+                return;
+            }
+            
+            try {
+                const response = await fetch(`${API_URL}/produtos/${id}`, {
+                    method: 'DELETE'
+                });
+                
+                if (response.ok) {
+                    alert('Produto excluído com sucesso!');
+                    listarProdutos();
+                    atualizarSelectProdutos();
+                } else {
+                    const error = await response.json();
+                    alert('Erro ao excluir: ' + (error.error || 'Produto possui pedidos associados'));
+                }
+            } catch (error) {
+                alert('Erro ao excluir produto: ' + error.message);
+            }
+        }
+        
+        function limparFormProduto() {
+            document.getElementById('produtoId').value = '';
+            document.getElementById('produtoNome').value = '';
+            document.getElementById('produtoDesc').value = '';
+            document.getElementById('produtoPreco').value = '';
+            document.getElementById('produtoEstoque').value = '';
+            document.getElementById('categoriaId').value = '';
+            document.getElementById('btnSalvarProduto').textContent = 'Cadastrar Produto';
+        }
+
+        // ==================== FUNÇÕES DE PEDIDOS ====================
+        
+        async function atualizarSelectProdutos() {
+            try {
+                const response = await fetch(`${API_URL}/produtos`);
+                const produtos = await response.json();
+                produtosCache = produtos;
+                
+                // Atualizar todos os selects nos itens de pedido
+                const selects = document.querySelectorAll('.produto-select');
+                selects.forEach(select => {
+                    const valorAtual = select.value;
+                    select.innerHTML = '<option value="">Selecione um produto</option>';
+                    for (const produto of produtos) {
+                        select.innerHTML += `<option value="${produto.id}">${produto.nome} - R$ ${produto.preco.toFixed(2)} (Estoque: ${produto.quantidadeEmEstoque})</option>`;
+                    }
+                    if (valorAtual) select.value = valorAtual;
+                });
+            } catch (error) {
+                console.error('Erro ao carregar produtos:', error);
+            }
+        }
+        
+        function adicionarItem() {
+            const template = document.getElementById('item-template');
+            const novoItem = template.cloneNode(true);
+            novoItem.id = 'item-' + nextItemId++;
+            novoItem.style.display = 'block';
+            novoItem.querySelector('.remove-item').onclick = function() { removerItem(this); };
+            
+            document.getElementById('itensPedido').appendChild(novoItem);
+            atualizarSelectProdutos();
+        }
+        
+        function removerItem(botao) {
+            botao.closest('.item-pedido').remove();
+        }
+        
+        async function criarPedido() {
+            const itens = [];
+            const itensDivs = document.querySelectorAll('#itensPedido .item-pedido:not(#item-template)');
+            
+            if (itensDivs.length === 0) {
+                alert('Adicione pelo menos um item ao pedido!');
+                return;
+            }
+            
+            for (const div of itensDivs) {
+                const produtoId = div.querySelector('.produto-select').value;
+                const quantidade = parseInt(div.querySelector('.quantidade-input').value);
+                
+                if (!produtoId) {
+                    alert('Selecione um produto para todos os itens!');
+                    return;
+                }
+                if (!quantidade || quantidade <= 0) {
+                    alert('Informe uma quantidade válida para todos os itens!');
+                    return;
+                }
+                
+                itens.push({
+                    produtoId: parseInt(produtoId),
+                    quantidade: quantidade
+                });
+            }
+            
+            const pedido = {
+                itens: itens
+            };
+            
+            try {
+                const response = await fetch(`${API_URL}/pedidos`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(pedido)
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    alert(`Pedido #${data.id} criado com sucesso! Total: R$ ${data.valorTotal.toFixed(2)}`);
+                    // Limpar formulário
+                    const itensContainer = document.getElementById('itensPedido');
+                    const todosItens = document.querySelectorAll('#itensPedido .item-pedido:not(#item-template)');
+                    todosItens.forEach(item => item.remove());
+                    listarPedidos();
+                    listarProdutos(); // Atualizar estoque na tela
+                } else {
+                    const error = await response.json();
+                    alert('Erro ao criar pedido: ' + (error.error || JSON.stringify(error)));
+                }
+            } catch (error) {
+                alert('Erro ao criar pedido: ' + error.message);
+            }
+        }
+        
+        async function listarPedidos() {
+            try {
+                const response = await fetch(`${API_URL}/pedidos`);
+                const data = await response.json();
+                document.getElementById('pedidos').textContent = JSON.stringify(data, null, 2);
+            } catch (error) {
+                document.getElementById('pedidos').textContent = 'Erro: ' + error.message;
+            }
+        }
+        
+        async function detalharPedido() {
+            const id = document.getElementById('detalharPedidoId').value;
+            if (!id) {
+                alert('Digite o ID do pedido');
+                return;
+            }
+            
+            try {
+                const response = await fetch(`${API_URL}/pedidos/${id}`);
+                if (response.ok) {
+                    const data = await response.json();
+                    document.getElementById('pedidos').textContent = JSON.stringify(data, null, 2);
+                } else if (response.status === 404) {
+                    document.getElementById('pedidos').textContent = 'Pedido não encontrado!';
+                } else {
+                    const error = await response.json();
+                    document.getElementById('pedidos').textContent = 'Erro: ' + JSON.stringify(error);
+                }
+            } catch (error) {
+                document.getElementById('pedidos').textContent = 'Erro: ' + error.message;
+            }
+        }
+
+        // ==================== INICIALIZAÇÃO ====================
+        
+        // Carregar produtos ao iniciar
+        listarProdutos();
+        atualizarSelectProdutos();
+        
+        // Adicionar primeiro item de pedido automaticamente
+        setTimeout(() => {
+            if (document.querySelectorAll('#itensPedido .item-pedido:not(#item-template)').length === 0) {
+                adicionarItem();
+            }
+        }, 100);
+    </script>
+</body>
+</html>-->
