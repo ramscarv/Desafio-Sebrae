@@ -434,46 +434,46 @@ mini-sistema-pedidos/
         │  
         ├── components/                # Componentes React  
         │   ├── Mensagem.jsx           # Mensagens de feedback  
-        │   ├── CategoriaLista.jsx     # Lista de categorias
-        │   ├── ProdutoForm.jsx        # Formulário de produtos
-        │   ├── ProdutoLista.jsx       # Lista de produtos
-        │   ├── PedidoForm.jsx         # Formulário de pedidos
-        │   ├── PedidoLista.jsx        # Lista de pedidos
-        │   └── PedidoDetalhe.jsx      # Detalhe do pedido
-        │
-        └── services/                  # Serviços API
-            └── api.js                 # Cliente Axios
+        │   ├── CategoriaLista.jsx     # Lista de categorias  
+        │   ├── ProdutoForm.jsx        # Formulário de produtos  
+        │   ├── ProdutoLista.jsx       # Lista de produtos  
+        │   ├── PedidoForm.jsx         # Formulário de pedidos  
+        │   ├── PedidoLista.jsx        # Lista de pedidos  
+        │   └── PedidoDetalhe.jsx      # Detalhe do pedido  
+        │  
+        └── services/                  # Serviços API  
+            └── api.js                 # Cliente Axios  
 
 ### 📊 Diagrama do Banco de Dados
--- Estrutura das tabelas
+-- Estrutura das tabelas  
 
-CATEGORIAS (
-    id BIGINT PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(255) NOT NULL UNIQUE)
+CATEGORIAS (  
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,  
+    nome VARCHAR(255) NOT NULL UNIQUE)  
 
-PRODUTOS (
-    id BIGINT PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(255) NOT NULL,
-    descricao VARCHAR(255),
-    preco DECIMAL(10,2) NOT NULL,
-    quantidade_em_estoque INT NOT NULL,
-    categoria_id BIGINT NOT NULL,
-    FOREIGN KEY (categoria_id) REFERENCES CATEGORIAS(id))
+PRODUTOS (  
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,  
+    nome VARCHAR(255) NOT NULL,  
+    descricao VARCHAR(255),  
+    preco DECIMAL(10,2) NOT NULL,  
+    quantidade_em_estoque INT NOT NULL,  
+    categoria_id BIGINT NOT NULL,  
+    FOREIGN KEY (categoria_id) REFERENCES CATEGORIAS(id))  
 
-PEDIDOS (
-    id BIGINT PRIMARY KEY AUTO_INCREMENT,
-    data_hora TIMESTAMP NOT NULL,
-    valor_total DECIMAL(10,2) NOT NULL)
+PEDIDOS (  
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,  
+    data_hora TIMESTAMP NOT NULL,  
+    valor_total DECIMAL(10,2) NOT NULL)  
 
-PEDIDOS_ITENS (
-    id BIGINT PRIMARY KEY AUTO_INCREMENT,
-    pedido_id BIGINT NOT NULL,
-    produto_id BIGINT NOT NULL,
-    quantidade INT NOT NULL,
-    preco_unitario DECIMAL(10,2) NOT NULL,
-    subtotal DECIMAL(10,2) NOT NULL,
-    FOREIGN KEY (pedido_id) REFERENCES PEDIDOS(id),
-    FOREIGN KEY (produto_id) REFERENCES PRODUTOS(id))
+PEDIDOS_ITENS (  
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,  
+    pedido_id BIGINT NOT NULL,  
+    produto_id BIGINT NOT NULL,  
+    quantidade INT NOT NULL,  
+    preco_unitario DECIMAL(10,2) NOT NULL,  
+    subtotal DECIMAL(10,2) NOT NULL,  
+    FOREIGN KEY (pedido_id) REFERENCES PEDIDOS(id),  
+    FOREIGN KEY (produto_id) REFERENCES PRODUTOS(id))  
 
 ## 📄 Licença
 Este projeto foi desenvolvido para fins de avaliação técnica.
