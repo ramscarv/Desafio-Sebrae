@@ -428,9 +428,9 @@ mini-sistema-pedidos/
 │       │  
 │       ├── exception/                 # Tratamento de erros  
 │       │   ├── BusinessException.java  
-│       │   ├── ResourceNotFoundException.java   
+│       │   ├── ResourceNotFoundException.java  
 │       │   └── GlobalExceptionHandler.java  
-│       │     
+│       │  
 │       └── config/                    # Configurações  
 │           └── WebConfig.java         # Configuração CORS  
 │  
@@ -451,7 +451,7 @@ mini-sistema-pedidos/
         │   ├── ProdutoLista.jsx       # Lista de produtos  
         │   ├── PedidoForm.jsx         # Formulário de pedidos  
         │   ├── PedidoLista.jsx        # Lista de pedidos  
-        │   └── PedidoDetalhe.jsx      # Detalhe do pedido  
+        │   └── PedidoDetalhe.jsx      # Detalhe do pedido   
         │  
         └── services/                  # Serviços API  
             └── api.js                 # Cliente Axios  
