@@ -166,49 +166,51 @@ Redirecionamento automático de /api para http://localhost:8080/api
 ## 📐 Principais Regras Implementadas
 
 Produtos
-Regra	               Status	        Descrição
-Nome obrigatório	    ✅	Não permite cadastro sem nome
-Preço ≥ zero	        ✅	Valida preços negativos
-Estoque ≥ zero	        ✅	Não permite estoque negativo
+Regra	Status	Descrição
+Nome obrigatório	✅	Não permite cadastro sem nome
+Preço ≥ zero	✅	Valida preços negativos
+Estoque ≥ zero	✅	Não permite estoque negativo
 Categoria obrigatória	✅	Produto deve pertencer a uma categoria
-Busca por nome	        ✅	Busca parcial case-insensitive
-Edição completa	        ✅	Permite alterar todos os campos
+Busca por nome	✅	Busca parcial case-insensitive
+Edição completa	✅	Permite alterar todos os campos
 Exclusão com validação	✅	Impede exclusão de produtos com pedidos
 
 Pedidos
-Regra	               Status	       Descrição
+Regra	Status	Descrição
 Não permite sem itens	✅	Valida lista de itens vazia
-Quantidade > zero	    ✅	Cada item deve ter quantidade positiva
-Estoque suficiente	    ✅	Verifica antes de criar pedido
-Baixa automática	    ✅	Atualiza estoque após pedido
-Cálculo do total	    ✅	Calcula automaticamente no backend
-Preço histórico	        ✅	Preserva preço do momento da compra
+Quantidade > zero	✅	Cada item deve ter quantidade positiva
+Estoque suficiente	✅	Verifica antes de criar pedido
+Baixa automática	✅	Atualiza estoque após pedido
+Cálculo do total	✅	Calcula automaticamente no backend
+Preço histórico	✅	Preserva preço do momento da compra
 
 Categorias
-Regra	               Status	        Descrição
-Nome obrigatório	    ✅	Campo obrigatório
-Unicidade de nome	    ✅	Nomes duplicados não são permitidos
-Listagem completa	    ✅	Retorna todas as categorias
+Regra	Status	Descrição
+Nome obrigatório	✅	Campo obrigatório
+Unicidade de nome	✅	Nomes duplicados não são permitidos
+Listagem completa	✅	Retorna todas as categorias
 
 ## 📝 Endpoints da API
+
 Método	Endpoint	Descrição	Status HTTP
+
 Categorias			
 POST	/api/categorias	Criar categoria	201 Created
 GET	/api/categorias	Listar categorias	200 OK
 
 Produtos			
-POST	/api/produtos	                    Criar   produto	 201 Created
-PUT	    /api/produtos/{id}	                Editar  produto	 200 OK
-GET	    /api/produtos	                    Listar  produtos 200 OK
-GET	    /api/produtos/buscar?nome={nome}	Buscar  produto	 200 OK
-DELETE	/api/produtos/{id}	                Excluir produto	 204 No Content
+POST	/api/produtos	Criar produto	201 Created
+PUT	/api/produtos/{id}	Editar produto	200 OK
+GET	/api/produtos	Listar produtos	200 OK
+GET	/api/produtos/buscar?nome={nome}	Buscar produto	200 OK
+DELETE	/api/produtos/{id}	Excluir produto	204 No Content
 
 Pedidos			
-POST	/api/pedidos	    Criar pedido	201 Created
-GET	    /api/pedidos	    Listar pedidos	200 OK
-GET	    /api/pedidos/{id}	Detalhar pedido	200 OK
+POST	/api/pedidos	Criar pedido	201 Created
+GET	/api/pedidos	Listar pedidos	200 OK
+GET	/api/pedidos/{id}	Detalhar pedido	200 OK
 
-Exemplos de Requisições
+#### Exemplos de Requisições
 
 Criar Categoria
 json
@@ -488,13 +490,11 @@ mini-sistema-pedidos/
             └── api.js                 # Cliente Axios
 
 ### 📊 Diagrama do Banco de Dados
-sql
 -- Estrutura das tabelas
 
 CATEGORIAS (
     id BIGINT PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(255) NOT NULL UNIQUE
-)
+    nome VARCHAR(255) NOT NULL UNIQUE)
 
 PRODUTOS (
     id BIGINT PRIMARY KEY AUTO_INCREMENT,
@@ -503,14 +503,12 @@ PRODUTOS (
     preco DECIMAL(10,2) NOT NULL,
     quantidade_em_estoque INT NOT NULL,
     categoria_id BIGINT NOT NULL,
-    FOREIGN KEY (categoria_id) REFERENCES CATEGORIAS(id)
-)
+    FOREIGN KEY (categoria_id) REFERENCES CATEGORIAS(id))
 
 PEDIDOS (
     id BIGINT PRIMARY KEY AUTO_INCREMENT,
     data_hora TIMESTAMP NOT NULL,
-    valor_total DECIMAL(10,2) NOT NULL
-)
+    valor_total DECIMAL(10,2) NOT NULL)
 
 PEDIDOS_ITENS (
     id BIGINT PRIMARY KEY AUTO_INCREMENT,
@@ -520,8 +518,8 @@ PEDIDOS_ITENS (
     preco_unitario DECIMAL(10,2) NOT NULL,
     subtotal DECIMAL(10,2) NOT NULL,
     FOREIGN KEY (pedido_id) REFERENCES PEDIDOS(id),
-    FOREIGN KEY (produto_id) REFERENCES PRODUTOS(id)
-)
+    FOREIGN KEY (produto_id) REFERENCES PRODUTOS(id))
+
 ## 📄 Licença
 Este projeto foi desenvolvido para fins de avaliação técnica.
 
