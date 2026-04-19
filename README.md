@@ -59,26 +59,14 @@ Node.js: https://nodejs.org/
 git clone <url-do-repositorio>
 cd mini-sistema-pedidos
 
-### 2. Executar o Backend (Spring Boot)
-Navegue até a pasta do backend: cd backend  
-Execute o Maven: "mvnw spring-boot:run"  
+### 2. Executar o Backend e Frontend
+Utilize os comando:  
+docker-compose build (para buildar a imagem)
+docker-compose up (para rodar a imagem buildada)
+docker-compose down (para parar a imagem buildada)
 
-✅ Aguarde a mensagem de sucesso:
-Tomcat started on port(s):  
-8080 (http) with context path ''  
-Started PedidosApplication in X seconds  
-Backend estará disponível em: http://localhost:8080/api
-
-Console H2: http://localhost:8080/h2-console  
-JDBC URL: jdbc:h2:mem:pedidosdb  
-Username: sa  
-Password: (deixar em branco)
-
-### 3. Executar o Frontend (React)
-Abra um novo terminal e navegue até o frontend: cd frontend  
-Instale as dependências: npm install 
-Inicie o servidor: npm run dev  
-✅ Frontend estará disponível em: http://localhost:3000
+frontend: localhost:3000
+backend: localhost:8080/api/categorias | localhost:8080/api/produtos | localhost:8080/api/pedidos
 
 ### 4. Acessar a Aplicação
 Abra o navegador e acesse: http://localhost:3000  
