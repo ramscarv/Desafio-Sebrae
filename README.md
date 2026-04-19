@@ -387,74 +387,76 @@ CI/CD com GitHub Actions
 Deploy automatizado (Heroku/Vercel)  
 
 ## 📁 Estrutura do Projeto
-mini-sistema-pedidos/  
-│  
-├── README.md                          # Documentação principal  
-│  
-├── backend/                           # Backend Spring Boot  
-│   ├── pom.xml                        # Dependências Maven  
-│   ├── mvnw                           # Maven wrapper (Linux/Mac)  
-│   ├── mvnw.cmd                       # Maven wrapper (Windows)  
-│   │  
-│   └── src/main/java/com/desafio/pedidos/  
-│       ├── PedidosApplication.java    # Classe principal  
-│       │  
-│       ├── controller/                # Controladores REST  
-│       │   ├── CategoriaController.java  
-│       │   ├── ProdutoController.java  
-│       │   └── PedidoController.java  
-│       │  
-│       ├── model/                     # Entidades JPA  
-│       │   ├── Categoria.java  
-│       │   ├── Produto.java  
-│       │   ├── Pedido.java  
-│       │   └── PedidoItem.java  
-│       │  
-│       ├── repository/                # Repositórios JPA  
-│       │   ├── CategoriaRepository.java  
-│       │   ├── ProdutoRepository.java  
-│       │   └── PedidoRepository.java  
-│       │  
-│       ├── service/                   # Regras de negócio  
-│       │   ├── CategoriaService.java  
-│       │   ├── ProdutoService.java  
-│       │   └── PedidoService.java  
-│       │  
-│       ├── dto/                       # Objetos de transferência  
-│       │   ├── CategoriaDTO.java  
-│       │   ├── ProdutoDTO.java  
-│       │   ├── PedidoDTO.java  
-│       │   └── PedidoItemDTO.java  
-│       │  
-│       ├── exception/                 # Tratamento de erros  
-│       │   ├── BusinessException.java  
-│       │   ├── ResourceNotFoundException.java  
-│       │   └── GlobalExceptionHandler.java  
-│       │  
-│       └── config/                    # Configurações  
-│           └── WebConfig.java         # Configuração CORS  
-│  
-└── frontend/                          # Frontend React  
-    ├── package.json                   # Dependências npm  
-    ├── vite.config.js                 # Configuração do Vite  
-    ├── index.html                     # HTML principal  
-    │  
-    └── src/  
-        ├── main.jsx                   # Entry point  
-        ├── App.jsx                    # Componente principal  
-        ├── App.css                    # Estilos globais  
-        │  
-        ├── components/                # Componentes React  
-        │   ├── Mensagem.jsx           # Mensagens de feedback   
-        │   ├── CategoriaLista.jsx     # Lista de categorias  
-        │   ├── ProdutoForm.jsx        # Formulário de produtos   
-        │   ├── ProdutoLista.jsx       # Lista de produtos  
-        │   ├── PedidoForm.jsx         # Formulário de pedidos  
-        │   ├── PedidoLista.jsx        # Lista de pedidos  
-        │   └── PedidoDetalhe.jsx      # Detalhe do pedido   
-        │  
-        └── services/                  # Serviços API  
-            └── api.js                 # Cliente Axios  
+```
+mini-sistema-pedidos/
+│
+├── README.md                          # Documentação principal
+│
+├── backend/                           # Backend Spring Boot
+│   ├── pom.xml                        # Dependências Maven
+│   ├── mvnw                           # Maven wrapper (Linux/Mac)
+│   ├── mvnw.cmd                       # Maven wrapper (Windows)
+│   │
+│   └── src/main/java/com/desafio/pedidos/
+│       ├── PedidosApplication.java    # Classe principal
+│       │
+│       ├── controller/                # Controladores REST
+│       │   ├── CategoriaController.java
+│       │   ├── ProdutoController.java
+│       │   └── PedidoController.java
+│       │
+│       ├── model/                     # Entidades JPA
+│       │   ├── Categoria.java
+│       │   ├── Produto.java
+│       │   ├── Pedido.java
+│       │   └── PedidoItem.java
+│       │
+│       ├── repository/                # Repositórios JPA
+│       │   ├── CategoriaRepository.java
+│       │   ├── ProdutoRepository.java
+│       │   └── PedidoRepository.java
+│       │
+│       ├── service/                   # Regras de negócio
+│       │   ├── CategoriaService.java
+│       │   ├── ProdutoService.java
+│       │   └── PedidoService.java
+│       │
+│       ├── dto/                       # Objetos de transferência
+│       │   ├── CategoriaDTO.java
+│       │   ├── ProdutoDTO.java
+│       │   ├── PedidoDTO.java
+│       │   └── PedidoItemDTO.java
+│       │
+│       ├── exception/                 # Tratamento de erros
+│       │   ├── BusinessException.java
+│       │   ├── ResourceNotFoundException.java
+│       │   └── GlobalExceptionHandler.java
+│       │
+│       └── config/                    # Configurações
+│           └── WebConfig.java         # Configuração CORS
+│
+└── frontend/                          # Frontend React
+    ├── package.json                   # Dependências npm
+    ├── vite.config.js                 # Configuração do Vite
+    ├── index.html                     # HTML principal
+    │
+    └── src/
+        ├── main.jsx                   # Entry point
+        ├── App.jsx                    # Componente principal
+        ├── App.css                    # Estilos globais
+        │
+        ├── components/                # Componentes React
+        │   ├── Mensagem.jsx           # Mensagens de feedback
+        │   ├── CategoriaLista.jsx     # Lista de categorias
+        │   ├── ProdutoForm.jsx        # Formulário de produtos
+        │   ├── ProdutoLista.jsx       # Lista de produtos
+        │   ├── PedidoForm.jsx         # Formulário de pedidos
+        │   ├── PedidoLista.jsx        # Lista de pedidos
+        │   └── PedidoDetalhe.jsx      # Detalhe do pedido
+        │
+        └── services/                  # Serviços API
+            └── api.js                 # Cliente Axios
+```
 
 ### 📊 Diagrama do Banco de Dados
 -- Estrutura das tabelas  
