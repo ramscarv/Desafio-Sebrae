@@ -1,0 +1,65 @@
+# backend/.dockerignore
+
+# Compilação
+**/target/
+**/classes/
+**/test-classes/
+*.jar
+*.war
+*.ear
+*.class
+
+# Logs
+*.log
+**/logs/
+
+# Arquivos do Maven (exceto os necessários)
+**/.mvn/wrapper/maven-wrapper.jar
+!**/.mvn/wrapper/maven-wrapper.properties
+
+# IDEs
+.idea/
+*.iml
+.vscode/
+.settings/
+.project
+.classpath
+*.iws
+*.ipr
+
+# Sistema
+.DS_Store
+Thumbs.db
+*.swp
+*.tmp
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# Docker
+Dockerfile*
+.dockerignore
+docker-compose*.yml
+
+# Documentação
+README.md
+LICENSE
+*.md
+!README.md
+
+# Testes
+**/src/test/
+**/test/
+
+# Spring Boot
+**/application-local.properties
+**/application-dev.properties
+**/bootstrap-local.yml
+
+# Outros
+*.orig
+*.rej
+*.bak
+*~

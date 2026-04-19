@@ -393,70 +393,41 @@ mini-sistema-pedidos/
 │
 ├── README.md                          # Documentação principal
 │
-├── backend/                           # Backend Spring Boot
-│   ├── pom.xml                        # Dependências Maven
-│   ├── mvnw                           # Maven wrapper (Linux/Mac)
-│   ├── mvnw.cmd                       # Maven wrapper (Windows)
+├── backend/                           # Pasta do backend
+│   ├── Dockerfile                     # Dockerfile do backend
+│   ├── .dockerignore                  # Ignorar arquivos desnecessários
 │   │
-│   └── src/main/java/com/desafio/pedidos/
-│       ├── PedidosApplication.java    # Classe principal
+│   └── pedidos/                       # ⭐ SEU CÓDIGO FONTE (dentro de backend)
+│       ├── pom.xml                    # Dependências Maven
+│       ├── mvnw                       # Maven wrapper (Linux/Mac)
+│       ├── mvnw.cmd                   # Maven wrapper (Windows)
+│       ├── HELP.md                    # Ajuda do Maven
 │       │
-│       ├── controller/                # Controladores REST
-│       │   ├── CategoriaController.java
-│       │   ├── ProdutoController.java
-│       │   └── PedidoController.java
-│       │
-│       ├── model/                     # Entidades JPA
-│       │   ├── Categoria.java
-│       │   ├── Produto.java
-│       │   ├── Pedido.java
-│       │   └── PedidoItem.java
-│       │
-│       ├── repository/                # Repositórios JPA
-│       │   ├── CategoriaRepository.java
-│       │   ├── ProdutoRepository.java
-│       │   └── PedidoRepository.java
-│       │
-│       ├── service/                   # Regras de negócio
-│       │   ├── CategoriaService.java
-│       │   ├── ProdutoService.java
-│       │   └── PedidoService.java
-│       │
-│       ├── dto/                       # Objetos de transferência
-│       │   ├── CategoriaDTO.java
-│       │   ├── ProdutoDTO.java
-│       │   ├── PedidoDTO.java
-│       │   └── PedidoItemDTO.java
-│       │
-│       ├── exception/                 # Tratamento de erros
-│       │   ├── BusinessException.java
-│       │   ├── ResourceNotFoundException.java
-│       │   └── GlobalExceptionHandler.java
-│       │
-│       └── config/                    # Configurações
-│           └── WebConfig.java         # Configuração CORS
+│       └── src/main/java/com/desafio/pedidos/
+│           ├── PedidosApplication.java
+│           ├── controller/
+│           ├── model/
+│           ├── repository/
+│           ├── service/
+│           ├── dto/
+│           ├── exception/
+│           └── config/
 │
-└── frontend/                          # Frontend React
-    ├── package.json                   # Dependências npm
-    ├── vite.config.js                 # Configuração do Vite
-    ├── index.html                     # HTML principal
-    │
-    └── src/
-        ├── main.jsx                   # Entry point
-        ├── App.jsx                    # Componente principal
-        ├── App.css                    # Estilos globais
-        │
-        ├── components/                # Componentes React
-        │   ├── Mensagem.jsx           # Mensagens de feedback
-        │   ├── CategoriaLista.jsx     # Lista de categorias
-        │   ├── ProdutoForm.jsx        # Formulário de produtos
-        │   ├── ProdutoLista.jsx       # Lista de produtos
-        │   ├── PedidoForm.jsx         # Formulário de pedidos
-        │   ├── PedidoLista.jsx        # Lista de pedidos
-        │   └── PedidoDetalhe.jsx      # Detalhe do pedido
-        │
-        └── services/                  # Serviços API
-            └── api.js                 # Cliente Axios
+├── frontend/                          # Pasta do frontend
+│   ├── Dockerfile                     # Dockerfile do frontend
+│   ├── Dockerfile.dev                 # Dockerfile para desenvolvimento
+│   ├── nginx.conf                     # Configuração do Nginx
+│   ├── .dockerignore                  # Ignorar arquivos desnecessários
+│   │
+│   └── src/                           # Código fonte do frontend
+│       ├── main.jsx
+│       ├── App.jsx
+│       ├── App.css
+│       ├── components/
+│       └── services/
+│
+├── docker-compose.yml                 # Orquestração dos containers
+└── start.bat                          # Script de inicialização
 ```
 
 ## 📊 Diagrama do Banco de Dados
